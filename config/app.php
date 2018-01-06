@@ -188,7 +188,6 @@ return [
         Moloquent\Auth\PasswordResetServiceProvider::class,
         Moloquent\Passport\PassportServiceProvider::class,
 
-
     ],
 
     /*

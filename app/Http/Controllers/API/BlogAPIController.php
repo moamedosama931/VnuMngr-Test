@@ -11,6 +11,7 @@ use App\Http\Controllers\AppBaseController;
 use InfyOm\Generator\Criteria\LimitOffsetCriteria;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use Validator;
 
 /**
  * Class BlogController
@@ -25,7 +26,7 @@ class BlogAPIController extends AppBaseController
     public function __construct(BlogRepository $blogRepo)
     {
         $this->middleware('auth:api');
-        
+
         $this->blogRepository = $blogRepo;
     }
 
@@ -127,5 +128,21 @@ class BlogAPIController extends AppBaseController
         $blog->delete();
 
         return $this->sendResponse($id, 'Blog deleted successfully');
+    }
+
+    public function getByStatus(Request $request , $status)
+    {
+          // if(gettype($status) == 'integer' && intval($status) )
+          // {
+              $status = intval($status);
+
+              $blogs = \App\Models\Blog::where('status' , $status)->get();
+
+              return $this->sendResponse($blogs , "Data Returned Correctly");
+          // }
+          //
+          // return $this->sendError('Blog not found');
+
+
     }
 }

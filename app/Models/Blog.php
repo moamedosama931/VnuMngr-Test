@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Moloquent\Eloquent\Model as Eloquent;
+
 
 /**
  * Class Blog
@@ -15,12 +17,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property longText description
  * @property integer status
  */
-class Blog extends Model
+class Blog extends Eloquent
 {
     use SoftDeletes;
 
     public $table = 'blogs';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -55,5 +57,5 @@ class Blog extends Model
         'status' => 'required|numeric'
     ];
 
-    
+
 }

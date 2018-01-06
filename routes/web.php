@@ -18,3 +18,14 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/createBlog' , function (){
+  $blog = new \App\Models\Blog();
+
+  $blog->title = "Title 1" ;
+  $blog->description = "description" ;
+  $blog->brief = "Brief" ;
+  $blog->status = 1 ;
+
+  $blog->save();
+});
